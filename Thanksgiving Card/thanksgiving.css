@@ -1,0 +1,429 @@
+html, body {
+  overflow: hidden;
+  background: rgb(246, 223, 160);
+}
+
+/* Greeting wrapper: column containing greeting and To/From */
+.greeting-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10vmin;
+  z-index: 4; /* above leaves */
+  pointer-events: none;
+}
+
+.greeting {
+  margin: 0;
+  font-family: 'Courier New', Courier, monospace; /*Georgia, 'Times New Roman', serif;*/
+  font-size: 5vmin;
+  color: #3e0101;
+  text-shadow: 0 2px 0 rgba(106, 87, 58, 0.6);
+}
+
+.card-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8vmin;
+  font-family: 'Courier New', Courier, monospace; /*Verdana, Geneva, Tahoma, sans-serif; Arial, sans-serif;*/
+  font-size: 5vmin;
+  color: #5a2a00;
+}
+.card-meta .to,
+.card-meta .from {
+  width: 100vmin;
+  text-align: left;
+}
+
+/* Stage: place greeting and turkey in a row */
+.stage {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0vmin;
+  width: 100%;
+  box-sizing: border-box;
+  padding-top: 10vmin; /* push down from top so leaves don't overlap */
+}
+
+/* Make the cartoon participate in normal flow (not absolutely positioned) */
+
+.cartoon {
+  width: min(65vmin, 55vw);
+  height: auto;
+  aspect-ratio: 1;
+  position: relative;
+  transform: scale(.9);
+}
+
+.cartoon {
+  --brown1: rgb(99, 68, 37);
+  --brown2: rgb(129, 97, 65);
+  --orange1: #ee6969;
+  --orange2: rgb(223, 42, 42);
+  width: 80vmin;
+  height: 80vmin;
+  position: relative;
+  padding-left: 0;
+  transform: scale(.85);
+}
+
+.cartoon div {
+  position: absolute;
+  box-sizing: border-box;
+}
+
+.body {
+  width: 40%;
+  height: 40%;
+  background: var(--brown1);
+  color: var(--brown1);
+  border-radius: 50%;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  box-shadow: 
+    -4vmin 14.5vmin 0 -13vmin,
+     4vmin 14.5vmin 0 -13vmin
+}
+
+.wing {
+  height: 30%;
+  width: 20%;
+  background: var(--brown2);
+  border-radius: 100% 0% 100% 5%;
+  top: 41%;
+  left: 23%;
+  transform-origin: top right;
+  transform: rotate(-10deg);
+}
+
+.wing + .wing {
+  left: auto;
+  right: 43%;
+  transform: scaleX(-1) rotate(-10deg);
+}
+
+.head {
+  width: 19%;
+  height: 19%;
+  border-radius: 50%;
+  background: var(--brown2);
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  clip-path: polygon(0% 20%, 100% 20%, 100% 500%, 0% 500%);
+}
+
+.head::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 40%;
+  height: 120%;
+  background: var(--brown2);
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  border-radius: 0 0 100% 100% / 30%;
+}
+
+.eye {
+  width: 10%;
+  height: 10%;
+  background: rgb(49, 20, 3);
+  border-radius: 50%;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, 0) translate(-2.5vmin, 0);
+  box-shadow: 5vmin 0
+}
+
+.beak {
+  width: 4vmin;
+  height: 3vmin;
+  border-left: 4vmin solid var(--orange1);
+  border-top: 1.5vmin solid transparent;
+  border-bottom: 1.5vmin solid transparent;
+  top: 60%;
+  left: 50%;
+}
+
+.red {
+  width: 2.5vmin;
+  height: 6vmin;
+  background: #d00;
+  border-radius: 100% / 100% 0 100% 100%;
+  top: 60%;
+  left: 50%;
+  transform: translate(-100%, 0);
+}
+
+.leg {
+  width: 3%;
+  height: 21%;
+  background: var(--orange1);
+  top: 79%;
+  left: 50%;
+  transform: translate(-50%, 0) translate(-4vmin, 0);
+  border-radius: 5vmin / 50%;
+  background-image:
+    repeating-linear-gradient(transparent 0 10%, rgba(0,0,0,0.1) 0 11%);
+}
+
+.leg + .leg {
+  transform: translate(-50%, 0) translate(4vmin, 0);
+}
+
+.leg::before,
+.leg::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 80%;
+  height: 35%;
+  left: 50%;
+  bottom: 0;
+  background: var(--orange1);
+  border-radius: 5vmin;
+  transform-origin: 50% 0;
+  transform: translate(-50%, 0) rotate(30deg);
+}
+.leg::after {
+  transform: translate(-50%, 0) rotate(-30deg);
+}
+
+.hat-bottom {
+  width: 35%;
+  height: 8%;
+  border-radius: 50%;
+  background: #362002;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.hat-top {
+  width: 16%;
+  height: 20%;
+  background: #362002;
+  box-shadow: inset 0 -7vmin #fff3;
+  border-radius: 100% / 230% 230% 0% 0%;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.hat-top::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 40%;
+  height: 2vmin;
+  border: 1vmin solid #772;
+  border-radius: 1vmin;
+  bottom: 3.25vmin;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.tail {
+  width: 10%;
+  height: 40%;
+  background: var(--orange1);
+  border-radius: 100% / 30% 30% 170% 170%;
+  transform-origin: 50% 100%;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.tail:nth-child(odd) {
+  background: var(--orange1);
+}
+
+.tail:nth-child(even) {
+  background: var(--orange2);
+}
+
+.tail:nth-child(1) { transform: translate(-50%, 0) rotate(0); }
+.tail:nth-child(2) { transform: translate(-50%, 0) rotate(17deg); }
+.tail:nth-child(3) { transform: translate(-50%, 0) rotate(34deg); }
+.tail:nth-child(4) { transform: translate(-50%, 0) rotate(51deg); }
+.tail:nth-child(5) { transform: translate(-50%, 0) rotate(68deg); }
+.tail:nth-child(6) { transform: translate(-50%, 0) rotate(85deg); }
+.tail:nth-child(7) { transform: translate(-50%, 0) rotate(102deg); }
+.tail:nth-child(8) { transform: translate(-50%, 0) rotate(-17deg); }
+.tail:nth-child(9) { transform: translate(-50%, 0) rotate(-34deg); }
+.tail:nth-child(10) { transform: translate(-50%, 0) rotate(-51deg); }
+.tail:nth-child(11) { transform: translate(-50%, 0) rotate(-68deg); }
+.tail:nth-child(12) { transform: translate(-50%, 0) rotate(-85deg); }
+.tail:nth-child(13) { transform: translate(-50%, 0) rotate(-102deg); }
+
+
+/* leaf animations */
+
+#leaves {
+  position: absolute;
+  top: -30px;
+  left: 0;
+  width: 200%;
+  justify-content: space-between;
+  padding: 0 20px;
+  pointer-events: none;
+}
+
+#leaves i {
+    display: inline-block;
+    width: 200px;
+    height: 150px;
+    background: linear-gradient(to bottom right, #f48a00, #a40000);
+    transform: skew(20deg);
+    border-radius: 5% 40% 70%;
+    box-shadow: inset 0px 0px 1px #222;
+    border: 0px solid #333;
+    z-index: 1;
+    -webkit-animation: falling 5s 0s infinite;
+}
+
+#leaves i:nth-of-type(2n) { -webkit-animation: falling2 5s 0s infinite; }
+#leaves i:nth-of-type(3n) { -webkit-animation: falling3 5s 0s infinite; }
+
+#leaves i:before {
+  position: absolute;
+  content: '';
+  top: 117px;
+  right: 9px;
+  height: 27px;
+  width: 32px;
+  transform: rotate(49deg);
+  border-radius: 0% 15% 15% 0%;
+  border-top: 1px solid #222;
+  border-bottom: 1px solid #222;
+  border-left: 0px solid #222;
+  border-right: 1px solid #222;
+  background: linear-gradient(to right, #382000, #a40000);
+  z-index: 1;
+}
+
+#leaves i:after {
+  content: '';
+  height: 125px;
+  width: 10px;
+  background: linear-gradient(to right, rgba(0,0,0,.15), rgba(0,0,0,0));
+  display: block;
+  transform: rotate(125deg);
+  position: absolute;
+  left: 85px;
+  border-radius:50%;
+}
+
+
+#leaves i:nth-of-type(n)    { height:23px; width:30px; }
+#leaves i:nth-of-type(n):before { width:7px; height:5px; top:17px; right:1px; }
+#leaves i:nth-of-type(n):after { width:2px; height:17px; left: 12px; top:0px; }
+
+#leaves i:nth-of-type(2n+1)    { height:11px; width:16px; }
+#leaves i:nth-of-type(2n+1):before { width:4px; height:3px; top:7px; right:0px; }
+#leaves i:nth-of-type(2n+1):after { width:2px; height:6px; left: 5px; top:1px; }
+
+#leaves i:nth-of-type(3n+2)  { height:17px; width:23px; }
+#leaves i:nth-of-type(3n+2):before  { height:4px; width:4px; top:12px; right:1px; }
+#leaves i:nth-of-type(3n+2):after  { height:10px; width:2px; top:1px; left:8px; }
+
+#leaves i:nth-of-type(n)   { -webkit-animation-delay: 1.9s;}
+#leaves i:nth-of-type(2n)  { -webkit-animation-delay: 3.9s;}
+#leaves i:nth-of-type(3n)  { -webkit-animation-delay: 2.3s;}
+#leaves i:nth-of-type(4n)  { -webkit-animation-delay: 4.4s;}
+#leaves i:nth-of-type(5n)  { -webkit-animation-delay: 5s;  }
+#leaves i:nth-of-type(6n)  { -webkit-animation-delay: 3.5s;}
+#leaves i:nth-of-type(7n)  { -webkit-animation-delay: 2.8s;}
+#leaves i:nth-of-type(8n)  { -webkit-animation-delay: 1.5s;}
+#leaves i:nth-of-type(9n)  { -webkit-animation-delay: 3.3s;}
+#leaves i:nth-of-type(10n) { -webkit-animation-delay: 2.5s;}
+#leaves i:nth-of-type(11n) { -webkit-animation-delay: 1.2s;}
+#leaves i:nth-of-type(12n) { -webkit-animation-delay: 4.1s;}
+#leaves i:nth-of-type(13n) { -webkit-animation-delay: 1s;  }
+#leaves i:nth-of-type(14n) { -webkit-animation-delay: 4.7s;}
+#leaves i:nth-of-type(15n) { -webkit-animation-delay: 3s;  }
+
+#leaves i:nth-of-type(n)    { background: linear-gradient(to bottom right, #b90000a5, #ff0000); }
+#leaves i:nth-of-type(2n+2)  { background: linear-gradient(to bottom right, #ff9100, #a40000); }
+#leaves i:nth-of-type(4n+1)  { background: linear-gradient(to bottom right, #f4cb00, #a44a00); }
+
+#leaves i:nth-of-type(n)    { opacity: 1;}
+#leaves i:nth-of-type(3n+1)  { opacity: 1;}
+#leaves i:nth-of-type(3n+2)  { opacity: 1;}
+
+#leaves i:nth-of-type(n)    {transform: rotate(180deg);}
+
+
+#leaves i:nth-of-type(n) { -webkit-animation-timing-function:ease-in-out;}
+
+@-webkit-keyframes falling {
+    
+    0% {
+        -webkit-transform:
+            translate3d(300,0,0)
+            rotate(0deg);
+    }
+    
+    100% {
+        -webkit-transform:
+            translate3d(-350px,700px,0)
+            rotate(90deg);
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes falling3 {
+     0% {
+        -webkit-transform:
+            translate3d(0,0,0)
+            rotate(-20deg);
+    }
+    
+    100% {
+        -webkit-transform:
+            translate3d(-230px,640px,0)
+            rotate(-70deg);
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes falling2 {
+     0% {
+        -webkit-transform:
+            translate3d(0,0,0)
+            rotate(90deg);
+    }
+    
+    100% {
+        -webkit-transform:
+            translate3d(-400px,680px,0)
+            rotate(0deg);
+        opacity: 0;
+    }
+}
+
+@media (max-width: 900px) {
+  .stage {
+    flex-direction: column;
+    gap: 6vmin;
+  }
+
+  .greeting-wrap {
+    font-size: 3vmin;
+    align-items: center;
+    text-align: center;
+  }
+
+  .card-meta .to,
+  .card-meta .from {
+    font-size: 3vmin;
+    gap: 2vmin;
+    text-align: center;
+  }
+}
